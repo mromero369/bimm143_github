@@ -1,0 +1,466 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Class 6: R Functions Lab},
+  pdfauthor={Michael Romero (A18135877)},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Class 6: R Functions Lab}
+\author{Michael Romero (A18135877)}
+\date{}
+\begin{document}
+\maketitle
+
+
+All functions in R have at least 3 things:
+
+-A \textbf{name} we pick this and use it to call the function. - Input
+\textbf{arguments}, there can be multiple comma separated inputs ot the
+function - The \textbf{body}, lines of R code that do the work of the
+function
+
+Our first wee function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{add}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(x, }\AttributeTok{y=}\DecValTok{1}\NormalTok{) \{}
+\NormalTok{  x}\SpecialCharTok{+}\NormalTok{y}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Lets test our function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{add}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{y=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 11 12 13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{add}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 110
+\end{verbatim}
+
+\subsection{A second function}\label{a-second-function}
+
+Let's try something more interesting. Make a sequence generation tool.
+
+The \texttt{sample()} function could be useful here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{size=} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2 3 8
+\end{verbatim}
+
+change this to work with the nucleotides A C G and T
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"G"}\NormalTok{)}
+\FunctionTok{sample}\NormalTok{(n, }\AttributeTok{size=}\DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "C" "A" "G" "T" "G"
+\end{verbatim}
+
+TUrn this snippet into a function that returns a user specified length
+dna sequence. Let's call it \texttt{generate\_dna()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{generate\_dna}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(}\AttributeTok{len=}\DecValTok{10}\NormalTok{, }\AttributeTok{fasta=}\ConstantTok{FALSE}\NormalTok{) \{}
+\NormalTok{  n}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"G"}\NormalTok{)}
+\NormalTok{  v}\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(n, }\AttributeTok{size=}\NormalTok{len, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# Make a single element vector}
+\NormalTok{  s}\OtherTok{\textless{}{-}}\FunctionTok{paste}\NormalTok{(v, }\AttributeTok{collapse=}\StringTok{""}\NormalTok{)}
+  
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Well done you!"}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{(fasta) \{}
+ \FunctionTok{return}\NormalTok{(s)    }
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \FunctionTok{return}\NormalTok{(v)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{generate\_dna}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Well done you!
+\end{verbatim}
+
+\begin{verbatim}
+[1] "T" "G" "A" "A" "A"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s}\OtherTok{\textless{}{-}}\FunctionTok{generate\_dna}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Well done you!
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "A" "G" "C" "A" "G" "A" "G" "C" "C" "A" "C" "A" "C" "T" "G"
+\end{verbatim}
+
+I want the option to return a single element character vector with my
+sequence all together like this: ``GGAGTAC''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{generate\_dna}\NormalTok{(}\DecValTok{10}\NormalTok{, }\AttributeTok{fasta=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Well done you!
+\end{verbatim}
+
+\begin{verbatim}
+ [1] "G" "T" "A" "C" "T" "G" "A" "C" "G" "C"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{generate\_dna}\NormalTok{(}\DecValTok{10}\NormalTok{, }\AttributeTok{fasta=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Well done you!
+\end{verbatim}
+
+\begin{verbatim}
+[1] "GTCAACCGCT"
+\end{verbatim}
+
+\subsection{A more advanced example}\label{a-more-advanced-example}
+
+Make a third function that generates protein sequence of a user
+specified length and format.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{generate\_dna}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(}\AttributeTok{size=}\DecValTok{20}\NormalTok{, }\AttributeTok{fasta=}\ConstantTok{FALSE}\NormalTok{) \{}
+\NormalTok{  n}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"G"}\NormalTok{)}
+\NormalTok{  v}\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(n, }\AttributeTok{size=}\NormalTok{size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# Make a single element vector}
+\NormalTok{  s}\OtherTok{\textless{}{-}}\FunctionTok{paste}\NormalTok{(v, }\AttributeTok{collapse=}\StringTok{""}\NormalTok{)}
+  
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Well done you!"}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{(fasta) \{}
+ \FunctionTok{return}\NormalTok{(s)    }
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \FunctionTok{return}\NormalTok{(v)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{generate\_dna}\NormalTok{(}\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Well done you!
+\end{verbatim}
+
+\begin{verbatim}
+[1] "T" "G" "A" "C" "A" "A"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{generate\_protein}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(}\AttributeTok{size=}\DecValTok{15}\NormalTok{, }\AttributeTok{fasta=}\ConstantTok{TRUE}\NormalTok{) \{}
+\NormalTok{  aa}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"R"}\NormalTok{,}\StringTok{"N"}\NormalTok{,}\StringTok{"D"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"Q"}\NormalTok{,}\StringTok{"E"}\NormalTok{,}\StringTok{"G"}\NormalTok{,}\StringTok{"H"}\NormalTok{,}\StringTok{"I"}\NormalTok{,}\StringTok{"L"}\NormalTok{,}\StringTok{"K"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"P"}\NormalTok{,}\StringTok{"S"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"W"}\NormalTok{,}\StringTok{"Y"}\NormalTok{,}\StringTok{"V"}\NormalTok{)}
+\NormalTok{  seq}\OtherTok{\textless{}{-}}\FunctionTok{sample}\NormalTok{(aa, }\AttributeTok{size=}\NormalTok{size, }\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{ (fasta) \{}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{paste}\NormalTok{(seq, }\AttributeTok{collapse=}\StringTok{""}\NormalTok{))}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{\{}
+    \FunctionTok{return}\NormalTok{(seq)}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{generate\_protein}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "MCALC"
+\end{verbatim}
+
+\begin{quote}
+Q. generate random protein sequences between lengths 5 and 12 amino
+acids.
+\end{quote}
+
+One approach is to do this by brute force calling our function for each
+length 5 to 12.
+
+Another approach is to write a \texttt{for()} loop to itterate over the
+input valued 5 to 12
+
+A very useful third R specific approach is to use the \texttt{sapply()}
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sapply}\NormalTok{(}\DecValTok{5}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, generate\_protein)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "MFYDP"        "KVGSHV"       "KRLVYQE"      "QYCSDELS"     "HKVKVVRSS"   
+[6] "EKCTPFCPQY"   "WTCTSWSILFY"  "DHQHPQWTMILQ"
+\end{verbatim}
+
+\begin{quote}
+\textbf{Key-Point}: Writing functions in R is doable but not the easiest
+thing. Starting with a working snippet of code and then using LLM tools
+to imporve and generalize your function code is a productive approach.
+\end{quote}
+
+
+
+
+\end{document}

@@ -1,0 +1,70 @@
+---
+title: "HWClass6(RFunctions)"
+author: "Michael Romero (A18135877)"
+format: pdf
+---
+
+```{r}
+library(bio3d)
+s1<-read.pdb("4AKE")
+s2<-read.pdb("1AKE")
+s3<-read.pdb("1E4Y")
+```
+
+```{r}
+s1.chainA<-trim.pdb(s1, chain="A", elety="CA")
+s2.chainA<-trim.pdb(s2, chain="A", elety="CA")
+s3.chainA<-trim.pdb(s1, chain="A", elety="CA")
+```
+
+```{r}
+s1.chainA
+```
+
+```{r}
+s1.b<-s1.chainA$atom$b
+s2.b<-s2.chainA$atom$b
+s3.b<-s3.chainA$atom$b
+```
+
+```{r}
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor")
+plotb3(s2.b, sse=s2.chainA, typ="l", ylab="Bfactor")
+plotb3(s3.b, sse=s3.chainA, typ="l", ylab="Bfactor")
+```
+
+```{r}
+hc <- hclust( dist( rbind(s1.b, s2.b, s3.b) ) )
+plot(hc)
+
+```
+
+\>How would you generalize the original code above to work with any set of input.
+
+\>Write your own function starting from the code above that analyzes protein drug interactions by reading in any protein PDB data and outputs a plot for the specified protein.
+
+```{r}
+prodrugint<- function(...) {
+  h<-do.call(rbind, list(...))
+  hc<-hclust(dist(h))
+  plot(hc)
+  return(hc)
+}
+```
+
+```{r}
+prodrugint(v1,v2)
+```
+
+```{r}
+prodrugint<-function(v, size=3) {
+  v<-c(s1.b, s2.b, s3.b)
+  c<-sample(v, size=size, replace=TRUE)
+  hclust( dist(do.call(rbind,list(...) ) )
+  return(v)
+}
+```
+
+```{r}
+prodrugint(1)
+```
